@@ -19,12 +19,21 @@ const GetPlaylist = () => {
       data: 'grant_type=client_credentials',
       method: 'POST'
     })
-    .then(tokenResponse => setToken(tokenResponse.data.access_token));
+    .then(tokenResponse => {
+        setToken(tokenResponse.data.access_token)
+        axios('https://api.spotify.com/v1/browse/featured-playlists' , {
+        method: 'GET',
+        headers: {'Authorization' : `Bearer ${tokenResponse.data.access_token}`}
+    })
+    .then(({data}) => setPlaylist(data.playlists.items))
+    } );
+
+    
     }, [])
 
     return ( 
         <div>
-            
+            {playlist && playlist.map((playlist) => <h2 key = {playlist.id}>{playlist.name}</h2>)}
         </div>
     )
 }
