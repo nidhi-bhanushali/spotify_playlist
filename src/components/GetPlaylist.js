@@ -33,7 +33,12 @@ const GetPlaylist = () => {
 
     return ( 
         <div>
-            {playlist && playlist.map((playlist) => <h2 key = {playlist.id}>{playlist.name}</h2>)}
+            {playlist && playlist.map((playlist) => ( 
+             <div key = {playlist.id}>   
+            <h2 >{playlist.name}</h2>
+                <img src = {playlist.images[0].url} alt= 'playlist'></img>
+            </div>
+            ))}
         </div>
     )
 }
