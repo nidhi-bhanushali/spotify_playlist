@@ -1,10 +1,11 @@
-import './App.css';
 import GetPlaylist from './components/GetPlaylist';
 
 function App() {
   return (
-    <div className="App">
+    <div className="container">
+      <div style={{width : 400}}>
       <GetPlaylist/>
+      </div>
     </div>
   );
 }

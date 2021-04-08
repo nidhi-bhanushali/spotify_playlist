@@ -34,9 +34,16 @@ const GetPlaylist = () => {
     return ( 
         <div>
             {playlist && playlist.map((playlist) => ( 
-             <div key = {playlist.id}>   
-            <h2 >{playlist.name}</h2>
-                <img src = {playlist.images[0].url} alt= 'playlist'></img>
+             <div key = {playlist.id} className = 'card m-5'>   
+            <h2 
+            className='card-title text-center mt-4'
+            style={{color:'#1db954'}}
+            >{playlist.name}</h2>
+                <img className='card-body' 
+                src = {playlist.images[0].url} 
+                alt= 'playlist'
+                style={{width:300 , height: 300}}
+                ></img>
             </div>
             ))}
         </div>
