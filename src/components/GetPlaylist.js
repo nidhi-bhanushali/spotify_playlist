@@ -1,16 +1,17 @@
-import React , {useState} from 'react'
+import React , {useState , useEffect} from 'react'
+import GetLocalPlaylists from './GetLocalPlaylists';
 
-const GetPlaylist = ({playlist}) => {
-    let [localPlaylist , setLocalPlaylist] = useState([]);
-    localPlaylist = [...localPlaylist , JSON.parse(localStorage.getItem('playlists'))]
-
+const GetPlaylist = ({playlist , localPlaylist}) => {
+    
 const handleClick = (e) => {
-    const newPlaylist = e.target.value;
-    localPlaylist = [...localPlaylist , newPlaylist]
-    localStorage.setItem('playlists' , JSON.stringify(localPlaylist))
+    const newPlaylist =  e.target.value;
+        localPlaylist = [...localPlaylist , newPlaylist]
+        localStorage.setItem('playlists' , JSON.stringify(localPlaylist))
+    
 }
 
     return ( 
+        <div className = 'container d-flex'>
         <div>
             {playlist && playlist.map((playlist) => ( 
              <div key = {playlist.id} className = 'card m-5'>   
@@ -30,9 +31,12 @@ const handleClick = (e) => {
                 id={playlist.id} value = {playlist.name}
                 >
                 Add to Local</button>
-
             </div>
             ))}
+        </div>
+        <div>
+            <GetLocalPlaylists localPlaylists = {localPlaylist}/>
+        </div>
         </div>
     )
 }
