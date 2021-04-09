@@ -1,7 +1,8 @@
 import React , {useState} from 'react'
 
 const GetPlaylist = ({playlist}) => {
-    let [localPlaylist , ] = useState([]);
+    let [localPlaylist , setLocalPlaylist] = useState([]);
+    localPlaylist = [...localPlaylist , JSON.parse(localStorage.getItem('playlists'))]
 
 const handleClick = (e) => {
     const newPlaylist = e.target.value;

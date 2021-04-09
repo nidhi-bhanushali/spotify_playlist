@@ -1,4 +1,5 @@
 import GetPlaylist from './components/GetPlaylist';
+import GetLocalPlaylists from './components/GetLocalPlaylists'
 import React , { useState , useEffect } from 'react'
 // import {getToken} from './apis'
 import { Credentials } from './credentials'
@@ -34,10 +35,14 @@ function App() {
  
 
   return (
-    <div className="container">
+    <div className="container d-flex">
       <div style={{width : 400}}>
-      <GetPlaylist playlist = {playlist}/>
+        <GetPlaylist playlist = {playlist}/>
       </div>
+      <div>
+      <GetLocalPlaylists/>
+      </div>
+      
     </div>
   );
 }
