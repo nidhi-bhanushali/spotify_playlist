@@ -10,13 +10,13 @@ const spotify = Credentials();
 function App() {
   const [token, setToken] = useState('');
     const [playlist , setPlaylist] = useState([]);
-    let [localPlaylist , setLocalPlaylist] = useState([]);
-    // const [userplaylists , setUserPlaylists] = useState([]);
+    const [userPlaylists , setUserPlaylists] = useState([]);
 
     useEffect(() => {
-        const localPlaylistEl = JSON.parse(localStorage.getItem('playlists'));
-        if(localPlaylistEl){
-            setLocalPlaylist(localPlaylistEl)
+        const userPlaylistEl = JSON.parse(localStorage.getItem('playlists'));
+        if(userPlaylistEl){
+            console.log(userPlaylistEl)
+            setUserPlaylists(userPlaylistEl)
         }
     }, [])
 
@@ -47,7 +47,9 @@ function App() {
   return (
     <div className="container d-flex">
       <div style={{width : 400}}>
-        <GetPlaylist playlist = {playlist} localPlaylist = {localPlaylist}/>
+        <GetPlaylist playlist = {playlist} 
+        userPlaylists = {userPlaylists}
+        setUserPlaylists = {setUserPlaylists}/>
       </div>
       <div>
       {/* <GetLocalPlaylists/> */}

@@ -1,12 +1,19 @@
 import React , {useState , useEffect} from 'react'
 import GetLocalPlaylists from './GetLocalPlaylists';
 
-const GetPlaylist = ({playlist , localPlaylist}) => {
-    
+const GetPlaylist = ({playlist , userPlaylists , setUserPlaylists}) => {
+    console.log(userPlaylists)
 const handleClick = (e) => {
-    const newPlaylist =  e.target.value;
-        localPlaylist = [...localPlaylist , newPlaylist]
-        localStorage.setItem('playlists' , JSON.stringify(localPlaylist))
+    const newPlaylist =  {
+        id: `${e.target.id}`,
+        name : `${e.target.value}`,
+        value : `${e.target.name}`
+    };
+        const newUserPlaylists = [...userPlaylists , newPlaylist]
+        setUserPlaylists(newUserPlaylists)
+        console.log(userPlaylists)
+        localStorage.setItem('playlists' , JSON.stringify(newUserPlaylists))
+        
     
 }
 
@@ -28,14 +35,14 @@ const handleClick = (e) => {
                 <button style = {{background : '#1db954'}} 
                 className='btn btn-block'
                 onClick = {handleClick}
-                id={playlist.id} value = {playlist.name}
+                id={playlist.id} value = {playlist.images[0].url} name={playlist.name}
                 >
                 Add to Local</button>
             </div>
             ))}
         </div>
         <div>
-            <GetLocalPlaylists localPlaylists = {localPlaylist}/>
+            <GetLocalPlaylists userPlaylists = {userPlaylists}/>
         </div>
         </div>
     )
